@@ -18,7 +18,14 @@ describe Ninja do
 
   it 'is affected by gravity' do
     expect(ninja.y).to eq(100)
-    ninja.update(1)
-    expect(ninja.y).to eq(820)
+    ninja.update(0.01)
+    expect(ninja.y).to eq(107.2)
   end
+
+  it 'lands on the ground' do
+    expect(ninja.y).to eq(100)
+    ninja.update(5)
+    expect(ninja.y).to eq(325)
+  end
+
 end

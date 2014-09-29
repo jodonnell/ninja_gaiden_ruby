@@ -24,5 +24,10 @@ class Ninja
 
   def update dt
     @y += NINJA_FALL_SPEED * dt
+    if @y >= 325
+      @y = 325
+      return
+    end
+
   end
 end
