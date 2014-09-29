@@ -9,6 +9,12 @@ class Window < Gosu::Window
   end
 
   def update
+    if button_down? Gosu::KbRight or button_down? Gosu::GpRight then
+      @game.ninja.right_pressed = true
+    else
+      @game.ninja.right_pressed = false
+    end
+
     @game.update
   end
 

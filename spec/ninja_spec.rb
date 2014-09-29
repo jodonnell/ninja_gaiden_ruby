@@ -28,4 +28,11 @@ describe Ninja do
     expect(ninja.y).to eq(325)
   end
 
+  it 'can move right' do
+    expect(ninja.x).to eq(100)
+    ninja.right_pressed = true
+    ninja.update(0.01)
+    expect(ninja.x).to eq(102.4)
+  end
+  
 end

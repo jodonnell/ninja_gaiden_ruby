@@ -37,5 +37,4 @@ describe Game do
   it "has time since last update" do
     expect(@game.stage).to be stage
   end
-
 end
