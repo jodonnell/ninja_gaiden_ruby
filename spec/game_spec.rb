@@ -25,7 +25,16 @@ describe Game do
     @game.draw
   end
 
+  it "updates" do
+    expect(ninja).to receive(:update)
+    @game.update
+  end
+  
   it "to have a stage" do
+    expect(@game.stage).to be stage
+  end
+
+  it "has time since last update" do
     expect(@game.stage).to be stage
   end
 

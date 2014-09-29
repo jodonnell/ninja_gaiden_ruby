@@ -15,4 +15,10 @@ describe Ninja do
     expect(ninja.sprite).to receive(:draw)
     ninja.draw
   end
+
+  it 'is affected by gravity' do
+    expect(ninja.y).to eq(100)
+    ninja.update(1)
+    expect(ninja.y).to eq(820)
+  end
 end
