@@ -34,5 +34,13 @@ describe Ninja do
     ninja.update(0.01)
     expect(ninja.x).to eq(102.4)
   end
+
+  it 'can move left' do
+    expect(ninja.x).to eq(100)
+    ninja.left_pressed = true
+    ninja.update(0.01)
+    expect(ninja.x).to eq(97.6)
+  end
+
   
 end
