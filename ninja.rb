@@ -15,7 +15,7 @@ class Ninja
   end
 
   def draw
-    @image.draw
+    @image.draw 100, 100, 1
   end
 
   def update

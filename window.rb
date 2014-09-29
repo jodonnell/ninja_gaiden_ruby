@@ -3,9 +3,8 @@ require './game'
 
 class Window < Gosu::Window
   def initialize
-    super(Gosu::screen_width, Gosu::screen_height, true)
+    super(Gosu::screen_width, Gosu::screen_height, false)
     self.caption = "Gosu Tutorial Game"
-
     @game = Game.new(self)
   end
 
