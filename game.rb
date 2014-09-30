@@ -1,4 +1,5 @@
 require './ninja'
+require './ninja_animations'
 require './stage'
 
 class Game
@@ -6,7 +7,8 @@ class Game
 
   def initialize window
     @window = window
-    @ninja = Ninja.create_with_sprite @window
+    animations = NinjaAnimations.new @window
+    @ninja = Ninja.new animations
     @stage = Stage.create_with_sprite @window
     @dt = 0
   end

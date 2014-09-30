@@ -1,32 +1,25 @@
 require 'gosu'
+
 NINJA_FALL_SPEED = 720
 NINJA_MOVE_SPEED = 240
 
 class Ninja
-  attr_accessor :x, :y, :right_pressed, :left_pressed
+  attr_accessor :x, :y, :right_pressed, :left_pressed, :animations
   
-  def self.create_with_sprite window
-    image = Gosu::Image.new(window, "images/ninja/ryu_stand.png", false)
-    Ninja.new(image)
-  end
-
-  def initialize image
-    @image = image
+  def initialize animations
     self.x = 100
     self.y = 100
-  end
-
-  def sprite
-    @image
+    self.animations = animations
   end
 
   def draw
-    @image.draw x, y, 1
+    animations.current_image.draw x, y, 1
   end
 
   def update dt
     if right_pressed
       self.x += NINJA_MOVE_SPEED * dt
+      self.animations.run_right dt
     end
 
     if left_pressed
