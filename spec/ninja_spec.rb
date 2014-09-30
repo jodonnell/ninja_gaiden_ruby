@@ -1,9 +1,9 @@
 require_relative '../ninja'
 
 describe Ninja do
-  let(:ninja_animations) { double 'NinjaAnimations' }
-  let(:ninja) { Ninja.new ninja_animations }
   let(:image) { double 'Image' }
+  let(:ninja_animations) { double 'NinjaAnimations', stand: image }
+  let(:ninja) { Ninja.new ninja_animations }
   
   it 'can draw' do
     expect(ninja.animations).to receive(:current_image).and_return(image)
@@ -40,5 +40,10 @@ describe Ninja do
     expect(ninja.x).to eq(97.6)
   end
 
+  it 'stands' do
+    expect(ninja.animations).to receive(:stand)
+    ninja.update 0.01
+  end
+  
   
 end

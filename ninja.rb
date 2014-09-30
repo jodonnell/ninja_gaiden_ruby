@@ -20,10 +20,10 @@ class Ninja
     if right_pressed
       self.x += NINJA_MOVE_SPEED * dt
       self.animations.run_right dt
-    end
-
-    if left_pressed
+    elsif left_pressed
       self.x -= NINJA_MOVE_SPEED * dt
+    else
+      self.animations.stand dt
     end
 
     

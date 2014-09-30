@@ -39,4 +39,9 @@ class NinjaAnimations
   def run_right dt
     @current_image = :running1
   end
+
+  def stand dt
+    @current_image = :standing
+  end
+
 end
