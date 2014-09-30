@@ -1,4 +1,6 @@
 class NinjaAnimations
+  attr_accessor :images
+  
   def initialize window
     init_images window
     @current_image = :standing
@@ -35,6 +37,6 @@ class NinjaAnimations
   end
   
   def run_right dt
-    
+    @current_image = :running1
   end
 end
