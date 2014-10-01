@@ -45,7 +45,7 @@ describe NinjaAnimations do
   
   it "stands still" do
     ninja_animations.images[:standing] = second_image
-    ninja_animations.stand 0
+    ninja_animations.stand
     expect(ninja_animations.current_image).to be second_image
   end
 

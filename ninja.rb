@@ -11,15 +11,19 @@ class Ninja
     self.y = 100
     self.animations = animations
     self.facing = :right
+    @normal_width = animations.current_image.width
   end
 
   def draw
+    draw_x = x
     if self.facing == :right
       horizontal_scale = 1
     else
       horizontal_scale = -1
+      width = animations.current_image.width
+      draw_x += width - get_offset(width)
     end
-    animations.current_image.draw x, y, 1, horizontal_scale
+    animations.current_image.draw draw_x, y, 1, horizontal_scale
   end
 
   def update dt
@@ -32,7 +36,7 @@ class Ninja
       self.animations.run_left
       self.facing = :left
     else
-      self.animations.stand dt
+      self.animations.stand
     end
 
     
@@ -41,6 +45,14 @@ class Ninja
       @y = 325
       return
     end
+  end
 
+  private
+  def get_offset image_width
+    offset = 0
+    if image_width > @normal_width
+      offset = image_width - @normal_width
+    end
+    offset
   end
 end

@@ -4,7 +4,7 @@ require_relative '../stage'
 
 describe Game do
   let(:window) { double 'Window' }
-  let(:image) { double 'Image', draw: nil }
+  let(:image) { double 'Image', draw: nil, width: 46 }
   let(:stage) { Stage.new image }
   let(:ninja_animations) { double('NinjaAnimations', current_image: image) }
   

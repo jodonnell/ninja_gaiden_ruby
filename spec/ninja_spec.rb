@@ -1,8 +1,9 @@
 require_relative '../ninja'
 
 describe Ninja do
-  let(:image) { double 'Image' }
-  let(:ninja_animations) { double 'NinjaAnimations', stand: image }
+  let(:image_width) { 46 }
+  let(:image) { double 'Image', width: image_width }
+  let(:ninja_animations) { double 'NinjaAnimations', current_image: image, stand: nil }
   let(:ninja) { Ninja.new ninja_animations }
   
   context 'drawing' do
@@ -17,7 +18,7 @@ describe Ninja do
 
     it 'facing left' do
       ninja.facing = :left
-      expect(image).to receive(:draw).with(ninja.x, ninja.y, 1, -1)
+      expect(image).to receive(:draw).with(ninja.x + image_width, ninja.y, 1, -1)
       ninja.draw
     end
   end

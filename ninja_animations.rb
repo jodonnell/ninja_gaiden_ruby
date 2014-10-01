@@ -54,7 +54,7 @@ class NinjaAnimations
     end
   end
   
-  def stand dt
+  def stand
     @current_image = :standing
   end
 
