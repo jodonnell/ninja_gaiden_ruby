@@ -1,3 +1,5 @@
+require 'gosu'
+
 class NinjaAnimations
   attr_accessor :images
   
@@ -36,10 +38,22 @@ class NinjaAnimations
     @images[@current_image]
   end
   
-  def run_right dt
-    @current_image = :running1
+  def run_right
+    if Gosu::milliseconds / 75 % 2 == 1
+      @current_image = :running2
+    else
+      @current_image = :running1
+    end
   end
 
+  def run_left
+    if Gosu::milliseconds / 75 % 2 == 1
+      @current_image = :running2
+    else
+      @current_image = :running1
+    end
+  end
+  
   def stand dt
     @current_image = :standing
   end
