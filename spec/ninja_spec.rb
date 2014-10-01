@@ -35,6 +35,14 @@ describe Ninja do
     expect(ninja.y).to eq(325)
   end
 
+  it 'can jump' do
+    ninja.y = 325
+    ninja.jump_pressed = true
+    ninja.update(0.01)
+    expect(ninja.y).to be < 325
+  end
+
+  
   context 'moving right' do
     it 'can move right' do
       expect(ninja.animations).to receive(:run_right)

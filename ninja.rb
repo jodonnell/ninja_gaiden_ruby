@@ -4,7 +4,7 @@ NINJA_FALL_SPEED = 720
 NINJA_MOVE_SPEED = 240
 
 class Ninja
-  attr_accessor :x, :y, :right_pressed, :left_pressed, :animations, :facing
+  attr_accessor :x, :y, :right_pressed, :left_pressed, :animations, :facing, :jump_pressed
   
   def initialize animations
     self.x = 100
@@ -27,6 +27,8 @@ class Ninja
   end
 
   def update dt
+    if jump_pressed
+    end      
     if right_pressed
       self.x += NINJA_MOVE_SPEED * dt
       self.animations.run_right
