@@ -58,4 +58,17 @@ class NinjaAnimations
     @current_image = :standing
   end
 
+  def jump
+    frame = Gosu::milliseconds / 50 % 4
+    if frame == 0
+      @current_image = :jumping1
+    elsif frame == 1
+      @current_image = :jumping2
+    elsif frame == 2
+      @current_image = :jumping3
+    else
+      @current_image = :jumping4
+    end
+  end
+  
 end

@@ -37,6 +37,7 @@ describe Ninja do
 
   it 'can jump' do
     expect(ninja).to receive(:fall).exactly(0).times
+    expect(ninja.animations).to receive(:jump)
     ninja.y = 325
     ninja.jump_pressed = true
     ninja.update(0.01)

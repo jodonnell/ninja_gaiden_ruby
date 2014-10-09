@@ -27,20 +27,20 @@ class Ninja
   end
 
   def update dt
-    if jump_pressed
-      jump dt
-    end      
     if right_pressed
       self.x += NINJA_MOVE_SPEED * dt
-      self.animations.run_right
+      animations.run_right
       self.facing = :right
     elsif left_pressed
       self.x -= NINJA_MOVE_SPEED * dt
-      self.animations.run_left
+      animations.run_left
       self.facing = :left
     else
-      self.animations.stand
+      animations.stand
     end
+    if jump_pressed
+      jump dt
+    end      
 
     fall dt if falling?
   end
@@ -67,11 +67,9 @@ class Ninja
     else
       @timer = 0
       self.jump_pressed = false
-      #self.ninja.animations:fall()
       return
     end
-    #self.ninja.animations:jump()
-    #self.y -= 10
+    animations.jump
   end
 
   def falling?
