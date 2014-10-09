@@ -44,11 +44,10 @@ describe Ninja do
   end
 
   it 'can jump?' do
-    expect(ninja.jumping?).to be false
+    expect(ninja.can_jump?).to be false
     ninja.y = 325
-    expect(ninja.jumping?).to be true
+    expect(ninja.can_jump?).to be true
   end
-
   
   
   context 'moving right' do

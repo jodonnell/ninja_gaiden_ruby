@@ -11,7 +11,10 @@ class Window < Gosu::Window
   def update
     @game.ninja.right_pressed = (button_down? Gosu::KbRight or button_down? Gosu::GpRight)
     @game.ninja.left_pressed = (button_down? Gosu::KbLeft or button_down? Gosu::GpLeft)
-    @game.ninja.jump_pressed = (button_down? Gosu::KbX or button_down? Gosu::GpButton1)
+
+    if @game.ninja.can_jump? and button_down? Gosu::KbX or button_down? Gosu::GpButton1
+      @game.ninja.jump_pressed = true
+    end
     @game.update
   end
 

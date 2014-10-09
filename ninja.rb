@@ -45,7 +45,7 @@ class Ninja
     fall dt if falling?
   end
 
-  def jumping?
+  def can_jump?
     !falling?
   end
   
@@ -66,7 +66,7 @@ class Ninja
     elsif @timer <= 0.47
     else
       @timer = 0
-      jump_pressed = false
+      self.jump_pressed = false
       #self.ninja.animations:fall()
       return
     end
