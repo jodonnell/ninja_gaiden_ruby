@@ -36,12 +36,20 @@ describe Ninja do
   end
 
   it 'can jump' do
+    expect(ninja).to receive(:fall).exactly(0).times
     ninja.y = 325
     ninja.jump_pressed = true
     ninja.update(0.01)
     expect(ninja.y).to be < 325
   end
 
+  it 'can jump?' do
+    expect(ninja.jumping?).to be false
+    ninja.y = 325
+    expect(ninja.jumping?).to be true
+  end
+
+  
   
   context 'moving right' do
     it 'can move right' do
