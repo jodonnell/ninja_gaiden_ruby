@@ -6,7 +6,7 @@ describe Ninja do
   let(:stage) { Stage.new image }
 
   it "has a sprite" do
-    allow(Gosu::Image).to receive_messages(:new => image)
+    allow(CameraAwareImage).to receive_messages(:new => image)
     stage = Stage.create_with_sprite window
     expect(stage.image).to be image
   end

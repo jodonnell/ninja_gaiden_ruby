@@ -1,8 +1,10 @@
+require './camera_aware_image'
+
 class Stage
   attr_accessor :image
 
   def self.create_with_sprite window
-    image = Gosu::Image.new(window, "images/first_stage.png", false)
+    image = CameraAwareImage.new(window, "images/level_test.png", false)
     Stage.new(image)
   end
 

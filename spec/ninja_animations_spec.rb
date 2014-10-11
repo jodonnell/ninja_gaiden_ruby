@@ -10,7 +10,7 @@ describe NinjaAnimations do
   let(:ninja_animations) { NinjaAnimations.new window }
 
   before do
-    allow(Gosu::Image).to receive(:new).and_return(image)
+    allow(CameraAwareImage).to receive(:new).and_return(image)
     allow(ninja_animations).to receive(:timer).and_return(0)
   end
   
