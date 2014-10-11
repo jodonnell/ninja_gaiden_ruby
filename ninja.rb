@@ -14,7 +14,7 @@ class Ninja
     self.animations = animations
     self.facing = :right
     @normal_width = animations.current_image.width
-    @state = Falling.new self
+    self.state = Falling.new self
   end
 
   def draw
@@ -37,8 +37,8 @@ class Ninja
 
   def update dt
     #puts @state
-    @state.update dt
-    @state.animation
+    state.update dt
+    state.animation
   end
 
   def move_right dt
@@ -52,31 +52,31 @@ class Ninja
   end
 
   def try_jumping
-    @state.jump
+    state.jump
   end
 
   def try_running_right
-    @state.right
+    state.right
   end
   
   def try_running_left
-    @state.left
+    state.left
   end
 
   def try_standing_still
-    @state.no_right_or_left
+    state.no_right_or_left
   end
   
   def try_attacking
-    @state.attack
+    state.attack
   end
 
   def try_crouching
-    @state.crouch
+    state.crouch
   end
 
   def stop_crouching
-    @state.stop_crouching
+    state.stop_crouching
   end
 
   def attack dt
@@ -85,7 +85,7 @@ class Ninja
     @attack_timer += dt
     if @attack_timer > 0.5
       @attack_timer = 0
-      @state.stop_attacking
+      state.stop_attacking
     end
   end
   
@@ -103,7 +103,7 @@ class Ninja
       @y -= 120 * dt
     elsif @timer <= 0.47
     else
-      @state.fall
+      state.fall
       @timer = 0
       return
     end
@@ -113,10 +113,14 @@ class Ninja
     @y += NINJA_FALL_SPEED * dt
     if @y >= 325
       @y = 325
-      @state = Standing.new self
+      self.state = Standing.new self
     end
   end
 
+  def state= new_state
+    @state = new_state
+  end
+  
   private
 
   def get_offset image_width
