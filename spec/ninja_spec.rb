@@ -3,7 +3,7 @@ require_relative '../ninja'
 describe Ninja do
   let(:image_width) { 46 }
   let(:image) { double 'Image', width: image_width }
-  let(:ninja_animations) { double 'NinjaAnimations', current_image: image, stand: nil }
+  let(:ninja_animations) { double 'NinjaAnimations', current_image: image, stand: nil, reset_timer: nil }
   let(:ninja) { Ninja.new ninja_animations }
   
   context 'drawing' do

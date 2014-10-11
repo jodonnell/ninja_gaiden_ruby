@@ -6,7 +6,7 @@ describe Game do
   let(:window) { double 'Window' }
   let(:image) { double 'Image', draw: nil, width: 46 }
   let(:stage) { Stage.new image }
-  let(:ninja_animations) { double('NinjaAnimations', current_image: image) }
+  let(:ninja_animations) { double('NinjaAnimations', current_image: image, reset_timer: nil) }
   
   before do
     allow(NinjaAnimations).to receive(:new).and_return(ninja_animations)

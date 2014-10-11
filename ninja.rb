@@ -83,7 +83,7 @@ class Ninja
     @attack_timer = 0 if @attack_timer.nil?
 
     @attack_timer += dt
-    if @attack_timer > 0.5
+    if @attack_timer > 0.25
       @attack_timer = 0
       state.stop_attacking
     end
@@ -118,6 +118,7 @@ class Ninja
   end
 
   def state= new_state
+    animations.reset_timer
     @state = new_state
   end
   

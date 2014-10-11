@@ -11,6 +11,7 @@ describe NinjaAnimations do
 
   before do
     allow(Gosu::Image).to receive(:new).and_return(image)
+    allow(ninja_animations).to receive(:timer).and_return(0)
   end
   
   it "has a current image" do
@@ -160,7 +161,7 @@ describe NinjaAnimations do
       expect(ninja_animations.current_image).to be third_image
     end
 
-    it "animation 1" do
+    it "animation 3" do
       allow(Gosu).to receive(:milliseconds).and_return 201
       ninja_animations.crouch_attacking
       expect(ninja_animations.current_image).to be fourth_image

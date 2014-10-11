@@ -1,13 +1,18 @@
 require 'gosu'
 
 class NinjaAnimations
-  attr_accessor :images
+  attr_accessor :images, :timer
   
   def initialize window
     init_images window
     @current_image = :standing
+    self.timer = nil
   end
 
+  def reset_timer
+    self.timer = nil
+  end
+  
   def init_images window
     @images = { standing: Gosu::Image.new(window, "images/ninja/ryu_stand.png", false),
                 running1: Gosu::Image.new(window, "images/ninja/ryu_running_1.png", false),
@@ -76,7 +81,11 @@ class NinjaAnimations
   end
 
   def attack
-    frame = Gosu::milliseconds / 100 % 3
+    unless timer
+      self.timer = Gosu::milliseconds
+    end
+    
+    frame = elapsed_time / 100 % 3
     if frame == 0
       @current_image = :attacking1
     elsif frame == 1
@@ -87,7 +96,11 @@ class NinjaAnimations
   end
 
   def jump_attack
-    frame = Gosu::milliseconds / 100 % 2
+    unless timer
+      self.timer = Gosu::milliseconds
+    end
+    
+    frame = elapsed_time / 100 % 2
     if frame == 0
       @current_image = :fallingAttack1
     else
@@ -100,7 +113,11 @@ class NinjaAnimations
   end
 
   def crouch_attacking
-    frame = Gosu::milliseconds / 100 % 3
+    unless timer
+      self.timer = Gosu::milliseconds
+    end
+    
+    frame = elapsed_time / 100 % 3
     if frame == 0
       @current_image = :duckingAttack1
     elsif frame == 1
@@ -108,6 +125,12 @@ class NinjaAnimations
     else
       @current_image = :duckingAttack3
     end
+  end
+
+  private
+
+  def elapsed_time
+    Gosu::milliseconds - timer
   end
   
 end
