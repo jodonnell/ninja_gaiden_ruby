@@ -9,10 +9,6 @@ class JumpingRightAttacking < States
     @ninja.state = JumpingLeftAttacking.new @ninja
   end
 
-  def attack
-    @ninja.state = JumpingRightAttacking.new @ninja    
-  end
-  
   def no_right_or_left
     @ninja.state = JumpingAttacking.new @ninja
   end
