@@ -51,6 +51,12 @@ describe NinjaAnimations do
     expect(ninja_animations.current_image).to be second_image
   end
 
+  it "falls" do
+    ninja_animations.images[:falling] = second_image
+    ninja_animations.falling
+    expect(ninja_animations.current_image).to be second_image
+  end
+  
   context 'jumping' do
     before do
       ninja_animations.images[:jumping1] = second_image
