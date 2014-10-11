@@ -81,9 +81,7 @@ class NinjaAnimations
   end
 
   def attack
-    unless timer
-      self.timer = Gosu::milliseconds
-    end
+    start_timer_if_new
     
     frame = elapsed_time / 100 % 3
     if frame == 0
@@ -96,9 +94,7 @@ class NinjaAnimations
   end
 
   def jump_attack
-    unless timer
-      self.timer = Gosu::milliseconds
-    end
+    start_timer_if_new
     
     frame = elapsed_time / 100 % 2
     if frame == 0
@@ -113,9 +109,7 @@ class NinjaAnimations
   end
 
   def crouch_attacking
-    unless timer
-      self.timer = Gosu::milliseconds
-    end
+    start_timer_if_new
     
     frame = elapsed_time / 100 % 3
     if frame == 0
@@ -129,6 +123,12 @@ class NinjaAnimations
 
   private
 
+  def start_timer_if_new
+    unless timer
+      self.timer = Gosu::milliseconds
+    end
+  end
+  
   def elapsed_time
     Gosu::milliseconds - timer
   end
