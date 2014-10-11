@@ -83,4 +83,50 @@ describe NinjaAnimations do
       expect(ninja_animations.current_image).to be fifth_image
     end
   end
+
+  context 'attacking' do
+    before do
+      ninja_animations.images[:attacking1] = second_image
+      ninja_animations.images[:attacking2] = third_image
+      ninja_animations.images[:attacking3] = fourth_image
+    end
+    
+    it 'attack image 1' do
+      allow(Gosu).to receive(:milliseconds).and_return 0
+      ninja_animations.attack
+      expect(ninja_animations.current_image).to be second_image
+    end
+
+    it 'attack image 2' do
+      allow(Gosu).to receive(:milliseconds).and_return 101
+      ninja_animations.attack
+      expect(ninja_animations.current_image).to be third_image
+    end
+
+    it 'attack image 3' do
+      allow(Gosu).to receive(:milliseconds).and_return 201
+      ninja_animations.attack
+      expect(ninja_animations.current_image).to be fourth_image
+    end
+  end
+
+  context 'jump attack' do
+    before do
+      ninja_animations.images[:fallingAttack1] = second_image
+      ninja_animations.images[:fallingAttack2] = third_image
+    end
+    
+    it 'falling attack image 1' do
+      allow(Gosu).to receive(:milliseconds).and_return 0
+      ninja_animations.jump_attack
+      expect(ninja_animations.current_image).to be second_image
+    end
+
+    it 'falling attack image 2' do
+      allow(Gosu).to receive(:milliseconds).and_return 101
+      ninja_animations.jump_attack
+      expect(ninja_animations.current_image).to be third_image
+    end
+  end
+
 end

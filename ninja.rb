@@ -1,10 +1,12 @@
 require 'gosu'
+require './ninja_states/standing'
+require './ninja_states/falling'
 
 NINJA_FALL_SPEED = 720
 NINJA_MOVE_SPEED = 240
 
 class Ninja
-  attr_accessor :x, :y, :right_pressed, :left_pressed, :animations, :facing, :jump_pressed
+  attr_accessor :x, :y, :animations, :facing, :state
   
   def initialize animations
     self.x = 100
@@ -12,6 +14,7 @@ class Ninja
     self.animations = animations
     self.facing = :right
     @normal_width = animations.current_image.width
+    @state = Falling.new self
   end
 
   def draw
@@ -27,34 +30,55 @@ class Ninja
   end
 
   def update dt
-    if right_pressed
-      self.x += NINJA_MOVE_SPEED * dt
-      animations.run_right
-      self.facing = :right
-    elsif left_pressed
-      self.x -= NINJA_MOVE_SPEED * dt
-      animations.run_left
-      self.facing = :left
-    else
-      animations.stand
-    end
-    if jump_pressed
-      jump dt
-    end      
-
-    fall dt if falling?
+    #puts @state
+    @state.update dt
+    @state.animation
   end
 
-  def can_jump?
-    !falling?
+  def move_right dt
+    self.facing = :right
+    @x += NINJA_MOVE_SPEED * dt
+  end
+
+  def move_left dt
+    self.facing = :left
+    @x -= NINJA_MOVE_SPEED * dt
+  end
+
+  def try_jumping
+    @state.jump
+  end
+
+  def try_running_right
+    @state.right
   end
   
-  private
+  def try_running_left
+    @state.left
+  end
 
+  def try_standing_still
+    @state.no_right_or_left
+  end
+  
+  def try_attacking
+    @state.attack
+  end
+
+  def attack dt
+    @attack_timer = 0 if @attack_timer.nil?
+
+    @attack_timer += dt
+    if @attack_timer > 0.5
+      @attack_timer = 0
+      @state.stop_attacking
+    end
+  end
+  
   def jump dt
     @timer = 0 if @timer.nil?
-
     @timer += dt
+
     if @timer <= 0.22
       @y -= 480 * dt
     elsif @timer <= 0.27
@@ -65,24 +89,22 @@ class Ninja
       @y -= 120 * dt
     elsif @timer <= 0.47
     else
+      @state.fall
       @timer = 0
-      self.jump_pressed = false
       return
     end
-    animations.jump
-  end
-
-  def falling?
-    !jump_pressed && @y < 325
   end
   
   def fall dt
     @y += NINJA_FALL_SPEED * dt
     if @y >= 325
       @y = 325
+      @state = Standing.new self
     end
   end
-  
+
+  private
+
   def get_offset image_width
     offset = 0
     if image_width > @normal_width
