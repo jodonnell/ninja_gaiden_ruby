@@ -129,25 +129,6 @@ describe NinjaAnimations do
     end
   end
 
-  context 'jump attack' do
-    before do
-      ninja_animations.images[:fallingAttack1] = second_image
-      ninja_animations.images[:fallingAttack2] = third_image
-    end
-    
-    it 'falling attack image 1' do
-      allow(Gosu).to receive(:milliseconds).and_return 0
-      ninja_animations.jump_attack
-      expect(ninja_animations.current_image).to be second_image
-    end
-
-    it 'falling attack image 2' do
-      allow(Gosu).to receive(:milliseconds).and_return 101
-      ninja_animations.jump_attack
-      expect(ninja_animations.current_image).to be third_image
-    end
-  end
-
   it "crouches" do
     ninja_animations.images[:ducking] = second_image
     ninja_animations.crouch
