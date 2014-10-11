@@ -95,4 +95,19 @@ class NinjaAnimations
     end
   end
 
+  def crouch
+    @current_image = :ducking
+  end
+
+  def crouch_attacking
+    frame = Gosu::milliseconds / 100 % 3
+    if frame == 0
+      @current_image = :duckingAttack1
+    elsif frame == 1
+      @current_image = :duckingAttack2
+    else
+      @current_image = :duckingAttack3
+    end
+  end
+  
 end

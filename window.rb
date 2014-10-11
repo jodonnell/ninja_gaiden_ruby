@@ -23,7 +23,13 @@ class Window < Gosu::Window
       @game.ninja.try_standing_still
     end
     
+    if button_down? Gosu::KbDown or button_down? Gosu::GpDown
+      @game.ninja.try_crouching
+    else
+      @game.ninja.stop_crouching
+    end
     
+
     if button_down? Gosu::KbX or button_down? Gosu::GpButton1
       @game.ninja.try_jumping
     end

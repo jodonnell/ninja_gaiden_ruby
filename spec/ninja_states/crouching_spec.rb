@@ -1,38 +1,38 @@
-require_relative '../../ninja_states/standing'
+require_relative '../../ninja_states/crouching'
 
-describe Standing do
+describe Crouching do
   let(:ninja_animations) { double("NinjaAnimations") }
   let(:ninja) { double("Ninja", animations: ninja_animations) }
-  let(:standing) { Standing.new ninja }
+  let(:crouching) { Crouching.new ninja }
   
   it "right animation" do
-    expect(ninja.animations).to receive(:stand)
-    standing.animation
+    expect(ninja.animations).to receive(:crouch)
+    crouching.animation
   end
 
   it "transitions to running right" do
     expect(ninja).to receive(:state=).with(an_instance_of(RunningRight))
-    standing.right
+    crouching.right
   end
 
   it "transitions to running left" do
     expect(ninja).to receive(:state=).with(an_instance_of(RunningLeft))
-    standing.left
+    crouching.left
   end
   
   it "transitions to running jump" do
     expect(ninja).to receive(:state=).with(an_instance_of(Jumping))
-    standing.jump
+    crouching.jump
   end
   
   it "transitions to attacking" do
-    expect(ninja).to receive(:state=).with(an_instance_of(Attacking))
-    standing.attack
+    expect(ninja).to receive(:state=).with(an_instance_of(CrouchingAttacking))
+    crouching.attack
   end
 
-  it "transitions to crouching" do
-    expect(ninja).to receive(:state=).with(an_instance_of(Crouching))
-    standing.crouch
+  it "transitions to standing" do
+    expect(ninja).to receive(:state=).with(an_instance_of(Standing))
+    crouching.stop_crouching
   end
 
 end

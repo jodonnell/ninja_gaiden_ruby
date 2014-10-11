@@ -23,6 +23,9 @@ class States
 
   def stop_attacking
   end
+
+  def stop_crouching
+  end
   
   def no_right_or_left
   end

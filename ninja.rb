@@ -19,6 +19,7 @@ class Ninja
 
   def draw
     draw_x = x
+    draw_y = y
     if self.facing == :right
       horizontal_scale = 1
     else
@@ -26,7 +27,12 @@ class Ninja
       width = animations.current_image.width
       draw_x += width - get_offset(width)
     end
-    animations.current_image.draw draw_x, y, 1, horizontal_scale
+
+    if self.state.is_a?(Crouching) or self.state.is_a?(CrouchingAttacking)
+      draw_y += 20
+    end
+    
+    animations.current_image.draw draw_x, draw_y, 1, horizontal_scale
   end
 
   def update dt
@@ -63,6 +69,14 @@ class Ninja
   
   def try_attacking
     @state.attack
+  end
+
+  def try_crouching
+    @state.crouch
+  end
+
+  def stop_crouching
+    @state.stop_crouching
   end
 
   def attack dt

@@ -3,9 +3,9 @@ require './ninja_states/running_right'
 require './ninja_states/running_left'
 require './ninja_states/jumping'
 require './ninja_states/attacking'
-require './ninja_states/crouching'
+require './ninja_states/crouching_attacking'
 
-class Standing < States
+class Crouching < States
   def right
     @ninja.state = RunningRight.new @ninja
   end
@@ -19,14 +19,14 @@ class Standing < States
   end
 
   def attack
-    @ninja.state = Attacking.new @ninja
-  end
-  
-  def crouch
-    @ninja.state = Crouching.new @ninja
+    @ninja.state = CrouchingAttacking.new @ninja
   end
 
+  def stop_crouching
+    @ninja.state = Standing.new @ninja
+  end
+  
   def animation
-    @ninja.animations.stand
+    @ninja.animations.crouch
   end
 end
