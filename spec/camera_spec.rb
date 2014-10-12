@@ -16,10 +16,10 @@ describe Camera do
     allow(Gosu).to receive(:screen_width).and_return 50
     allow(Gosu).to receive(:screen_height).and_return 50
     ninja.x = 1000
-    ninja.y = 1000
+    ninja.y = 500
     camera.ninja = ninja
     camera.update
     expect(camera.x).to eq 975
-    expect(camera.y).to eq 975    
+    expect(camera.y).to eq 475
   end
 end

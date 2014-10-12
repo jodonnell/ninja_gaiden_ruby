@@ -11,7 +11,7 @@ class Camera
   end
 
   def update
-    self.x = ninja.x - Gosu::screen_height / 2
-    self.y = ninja.x - Gosu::screen_width / 2
+    self.x = ninja.x - Gosu::screen_width / 2
+    self.y = ninja.y - Gosu::screen_height / 2
   end
 end

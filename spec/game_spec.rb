@@ -22,6 +22,7 @@ describe Game do
 
   it "updates" do
     expect(@game.ninja).to receive(:update)
+    expect(@game.camera).to receive(:update)
     @game.update
   end
   
